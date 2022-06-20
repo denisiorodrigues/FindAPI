@@ -1,0 +1,13 @@
+{
+  "name": "FinAPI",
+  "version": "1.0.0",
+  "description": "App of the finaces",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
