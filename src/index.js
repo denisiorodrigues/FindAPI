@@ -19,6 +19,10 @@ app.post("/account", (request, response) => {
     });
 
     return response.status(201).send();
-})
+});
+
+app.get("/account", (request, response) => {
+    return response.send(costumers);
+});
 
 app.listen(3333)
