@@ -10,8 +10,8 @@ RQ2- [x] Deve ser possível buscar o extrato bancário do cliente
 RQ3- [x] Deve ser possível realizar um deposíto
 RQ4- [x] Deve ser possível realizar um saque
 RQ5- [x] Deve ser possível buscar o extrato bancário do cliente por data
-RQ6- [] Deve ser possível atualizar dados da conta do cliente
-RQ7- [] Deve ser possível obter dados da conta do cliente
+RQ6- [x] Deve ser possível atualizar dados da conta do cliente
+RQ7- [x] Deve ser possível obter dados da conta do cliente
 RQ8- [] Deve ser possível deletar uma conta
 
 
