@@ -53,7 +53,7 @@ app.post("/account", (request, response) => {
     return response.status(201).send();
 });
 
-app.get("/account", (request, response) => {
+app.get("/accounts", (request, response) => {
     return response.send(custumers);
 });
 
@@ -66,7 +66,6 @@ app.get("/statement/", verifyIsExistsAccountCPF, (request, response) => {
 
     return response.json(customer.statements);
 });
-
 
 app.post("/deposit", verifyIsExistsAccountCPF, (request, response) => {
     const { description, amount } = request.body;
@@ -115,6 +114,22 @@ app.get("/statement/date", verifyIsExistsAccountCPF, (request, response) => {
     const statement = customer.statements.filter((statement) => statement.cread_at.toDateString() === new Date(dateFormat).toDateString());
 
     return response.json(statement);
+});
+
+app.put("/account", verifyIsExistsAccountCPF, (request, response) => {
+    const { name } = request.body;
+    const {customer} = request;
+
+    customer.name = name;
+
+    return response.status(201).send();
+
+});
+
+app.get("/account", verifyIsExistsAccountCPF, (request, response) => {
+    const {customer} = request;
+
+    return response.json(customer);
 });
 
 app.listen(3333);
