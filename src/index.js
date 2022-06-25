@@ -7,6 +7,21 @@ app.use(express.json());
 
 const custumers = [];
 
+//Middleware
+function verifyIsExistsAccountCPF(request, response, netx){
+    const {cpf} = request.headers;
+
+    const customer = custumers.find(customer => customer.cpf === cpf);
+    
+    if(!customer) {
+        return response.status(400).json({ error: "Custumer not found!" })
+    }
+
+    request.customer = customer;
+
+    netx();
+}
+
 app.post("/account", (request, response) => {
     const {cpf, name } = request.body;
 
@@ -30,16 +45,14 @@ app.get("/account", (request, response) => {
     return response.send(custumers);
 });
 
-app.get("/statement/:cpf", (request, response) => {
-    const {cpf} = request.params;
+//Configurar o Meddlaware assim, permite que apatir dessa configuração, todas as rotas abaixo irão usar o meddleware
+app.use(verifyIsExistsAccountCPF);
 
-    const customer = custumers.find(customer => customer.cpf === cpf);
+//Configurar o meddlewre dessa forma, permite que somente esse método usae o meddleware
+app.get("/statement/", verifyIsExistsAccountCPF, (request, response) => {
+    const { customer } = request;
     
-    if(!customer) {
-        return response.status(400).json({ error: "Custumer not found!" })
-    }
-
     return response.json(customer.statments);
 });
 
-app.listen(3333)
+app.listen(3333);
