@@ -47,7 +47,7 @@ app.post("/account", (request, response) => {
         cpf,
         name,
         id: uuidv4(),
-        statments: []
+        statements: []
     });
 
     return response.status(201).send();
@@ -64,7 +64,7 @@ app.get("/account", (request, response) => {
 app.get("/statement/", verifyIsExistsAccountCPF, (request, response) => {
     const { customer } = request;
 
-    return response.json(customer.statments);
+    return response.json(customer.statements);
 });
 
 
@@ -73,38 +73,48 @@ app.post("/deposit", verifyIsExistsAccountCPF, (request, response) => {
 
     const {customer} = request;
 
-    const statmentOperation = {
+    const statementOperation = {
         description,
         amount,
         cread_at: new Date(),
         type: "credit"
     }
 
-    customer.statments.push(statmentOperation);
+    customer.statements.push(statementOperation);
 
     return response.status(201).send();
 });
-
 
 app.post("/withdraw", verifyIsExistsAccountCPF, (request, response) => {
     const { amount } = request.body;
     const { customer } = request;
     
-    const balance = getBalance(customer.statments);
+    const balance = getBalance(customer.statements);
 
     if(amount > balance){
         return response.status(400).json({error: "Insufucients funds!"});
     }
 
-    const statmentOperation = {
+    const statementOperation = {
         amount,
         cread_at: new Date(),
         type: "debit"
     }
 
-    customer.statments.push(statmentOperation);
+    customer.statements.push(statementOperation);
 
     return response.status(201).send();
 })
+
+app.get("/statement/date", verifyIsExistsAccountCPF, (request, response) => {
+    const { customer } = request;
+    const { date } = request.query;
+
+    const dateFormat = new Date( date + " 00:00");
+
+    const statement = customer.statements.filter((statement) => statement.cread_at.toDateString() === new Date(dateFormat).toDateString());
+
+    return response.json(statement);
+});
 
 app.listen(3333);
