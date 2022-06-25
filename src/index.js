@@ -46,13 +46,31 @@ app.get("/account", (request, response) => {
 });
 
 //Configurar o Meddlaware assim, permite que apatir dessa configuração, todas as rotas abaixo irão usar o meddleware
-app.use(verifyIsExistsAccountCPF);
+//app.use(verifyIsExistsAccountCPF);
 
 //Configurar o meddlewre dessa forma, permite que somente esse método usae o meddleware
 app.get("/statement/", verifyIsExistsAccountCPF, (request, response) => {
     const { customer } = request;
-    
+
     return response.json(customer.statments);
+});
+
+
+app.post("/deposit", verifyIsExistsAccountCPF, (request, response) => {
+    const { description, amount } = request.body;
+
+    const {customer} = request;
+
+    const statmentOperation = {
+        description,
+        amount,
+        cread_at: new Date(),
+        type: "credit"
+    }
+
+    customer.statments.push(statmentOperation);
+
+    return response.status(201).send();
 });
 
 app.listen(3333);

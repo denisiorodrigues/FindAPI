@@ -7,7 +7,7 @@ Aplicativo financeiro feito em NodeJS para laboratório de estudos
 
 RQ1- [x] Deve ser possível criar um conta
 RQ2- [x] Deve ser possível buscar o extrato bancário do cliente
-RQ3- [] Deve ser possível realizar um deposíto
+RQ3- [x] Deve ser possível realizar um deposíto
 RQ4- [] Deve ser possível realizar um saque
 RQ5- [] Deve ser possível buscar o extrato bancário do cliente por data
 RQ6- [] Deve ser possível atualizar dados da conta do cliente
