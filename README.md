@@ -12,7 +12,8 @@ RQ4- [x] Deve ser possível realizar um saque
 RQ5- [x] Deve ser possível buscar o extrato bancário do cliente por data
 RQ6- [x] Deve ser possível atualizar dados da conta do cliente
 RQ7- [x] Deve ser possível obter dados da conta do cliente
-RQ8- [] Deve ser possível deletar uma conta
+RQ8- [x] Deve ser possível deletar uma conta
+RQ9- [] Deve ser possível retornar um Balance
 
 
 ### REGRAS DE NEGÓCIO
