@@ -47,6 +47,7 @@ app.post("/account", (request, response) => {
     custumers.push({
         cpf,
         name,
+        username,
         id: uuidv4(),
         statements: []
     });
