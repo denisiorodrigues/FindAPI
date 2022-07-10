@@ -6,4 +6,4 @@ app.get("/", (request, response) => {
     return response.json({message: "Hello FindAPI!!!"});
 })
 
-app.listen(3001, () => console.log("Serever ios runnig!"));
+app.listen(3001, () => console.log("Serever is Runnig..."));
