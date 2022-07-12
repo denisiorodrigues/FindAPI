@@ -1,7 +1,6 @@
 import express from "express";
 import { accountRouters } from "./routes/account.routes";
 
-
 const app = express();
 
 app.use(express.json());
